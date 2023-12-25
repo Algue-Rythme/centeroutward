@@ -47,18 +47,18 @@ cfg.dataset_size = 2048
 cfg.batch_size = 256
 cfg.center_PQ = True  # possible due W2 properties.
 
-cfg.disc_lr = 1e-3
-cfg.gen_lr = 5e-4
+cfg.disc_lr = 2.5e-4
+cfg.gen_lr = 2.5e-4
 
 cfg.warmup_disc = 1200
 cfg.num_epochs = 1500
 cfg.num_steps_gen = 2
 cfg.num_steps_disc = 128
 
-cfg.convex = 'stochastic'
+cfg.convex = 'orthostochastic'
 cfg.sigma_act_fn = 'cummax'
 cfg.out_act_fn = 'logsumexp'
-cfg.kernel_init_skip = 'orthogonal'
+cfg.kernel_init_skip = 'zeros'
 cfg.quadratic = True
 cfg.dim_hidden = [32, 32]
 
@@ -89,10 +89,10 @@ sweep_config = {
         'values': ['logsumexp', 'cummax'],
         'distribution': 'categorical'},
       'out_act_fn': {
-        'values': ['identity', 'logsumexp'],
+        'values': ['logsumexp', 'identity'],
         'distribution': 'categorical'},
       'kernel_init_skip': {
-        'values': ['ortho', 'zeros', 'glorot'],
+        'values': ['orthogonal', 'zeros', 'glorot'],
         'distribution': 'categorical'},
   }
 }
